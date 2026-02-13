@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Online Shop</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f2f2f2;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+
+h1{
+  padding:15px;
+}
+
+.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.product{
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.product img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+button{
+  padding:10px;
+  width:100%;
+  background:green;
+  color:white;
+  border:none;
+  border-radius:8px;
+  margin-top:10px;
+  font-size:16px;
+}
+
+.order-btn{
+  background:#25D366;
+  margin:20px;
+  width:90%;
+  max-width:400px;
+}
+
+button:active{
+  transform:scale(0.98);
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨🌸 Tharuoo Online Shop 🛍️💖</h1>
+
+<div class="container">
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
+    <h3>Watch</h3>
+    <p>Rs.4500</p>
+    <button onclick="addToCart('Watch',4500,'W001')">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b">
+    <h3>T-Shirt</h3>
+    <p>Rs.2500</p>
+    <button onclick="addToCart('T-Shirt',2500,'TS001')">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+    <h3>Shoes</h3>
+    <p>Rs.5000</p>
+    <button onclick="addToCart('Shoes',5000,'SH001')">
+      Add to Cart
+    </button>
+  </div>
+
+<div class="product">
+<img src="images/badammilk.jpg">
+    <h3>Badam Milk🍼 </h3>
+    <p>Rs.180</p>
+    <button onclick="addToCart('Badem Milk',180,'BM001')">
+      Add to Cart
+    </button>
+  </div>
+
+<div class="product">
+<img src="images/limedrink.jpg">
+    <h3>Lime Drink </h3>
+    <p>Rs.100</p>
+    <button onclick="addToCart('Lime Drink',100,'LD001')">
+      Add to Cart
+    </button>
+  </div>
+
+
+
+</div>
+
+<button class="order-btn" onclick="orderNow()">
+  Order via WhatsApp
+</button>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price, code){
+  cart.push({name, price, code});
+  alert(name + " added to cart!");
+}
+
+function orderNow(){
+  if(cart.length === 0){
+    alert("Your cart is empty!");
+    return;
+  }
+
+  let message = "NEW ORDER %0A--------------------%0A";
+  let total = 0;
+
+  cart.forEach(function(item){
+    message += "Product: " + item.name + "%0A";
+    message += "Code: " + item.code + "%0A";
+    message += "Price: Rs." + item.price + "%0A%0A";
+    total += item.price;
+  });
+
+  message += "Total: Rs." + total;
+
+  let whatsapp = "https://wa.me/94781895687?text=" + message;
+  window.open(whatsapp);
+}
+
+</script>
+
+</body>
+</html>
